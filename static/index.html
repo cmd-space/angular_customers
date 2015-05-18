@@ -35,19 +35,36 @@
             $scope.customers = [];
             customerFactory.getCustomers(function(data){
                 $scope.customers = data;
-            })
+            });
+            $scope.addCustomer = function(){
+                $scope.newCustomer.date = new Date();
+                $scope.customers.push($scope.newCustomer);
+                $scope.newCustomer = {};
+            }
+            $scope.removeCustomer = function(customer){
+                $scope.customers.splice($scope.customers.indexOf(customer), 1);
+            }
         });
     </script>
     <style>
+        form{
+            margin-bottom: 1em;
+        }
+        #add{
+            background-color: dodgerblue;
+        }
         .thead{
             background-color: lightgrey;
         }
         table{
             border-collapse: collapse;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            border-top: 1px solid black;
         }
         table td{
             padding: .25em .25em;
-            border: 1px solid black;
+            border-right: 1px solid black;
         }
         button{
             background-color: red;
