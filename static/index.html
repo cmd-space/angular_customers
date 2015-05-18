@@ -37,9 +37,19 @@
                 $scope.customers = data;
             });
             $scope.addCustomer = function(){
-                $scope.newCustomer.date = new Date();
-                $scope.customers.push($scope.newCustomer);
-                $scope.newCustomer = {};
+                var exists = true;
+                for(var i = 0;i < $scope.customers.length; i++){
+                    if($scope.customers[i].name === $scope.newCustomer.name){
+                        alert('Customer already exists! ' + $scope.customers[i].name);
+                        exists = false;
+                        return exists;
+                    }
+                }
+                if(exists === true){
+                        $scope.newCustomer.date = new Date();
+                        $scope.customers.push($scope.newCustomer);
+                        $scope.newCustomer = {};
+                }
             }
             $scope.removeCustomer = function(customer){
                 $scope.customers.splice($scope.customers.indexOf(customer), 1);
