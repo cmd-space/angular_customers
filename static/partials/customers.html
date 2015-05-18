@@ -1,0 +1,14 @@
+
+ <h1>hi</h1>
+  <table ng-controller="customersController">
+    <tr class='thead'>
+        <td>Customer Name</td>
+        <td>Created Date</td>
+        <td>Actions</td>
+    </tr>
+    <tr ng-repeat="customer in customers | orderBy: 'date'">
+        <td ng-bind="customer.name"></td>
+        <td ng-bind="customer.date | date: 'MMMM d yyyy'"></td>
+        <td><button ng-click='removeCustomer(customer)'>Remove Customer</button></td>
+    </tr>
+</table>

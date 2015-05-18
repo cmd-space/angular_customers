@@ -10,19 +10,20 @@
         
         myApp.config(function($routeProvider){
             $routeProvider
-                .when('/',{
-                    templateUrl: 'partials/add.html'
-                });
                 .when('/customers',{
                     templateUrl: 'partials/customers.html'
-                });
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
         });
         
         myApp.factory('customerFactory', function(){
-            var customers = [{name: 'Michael Choi'}, {name: 'John Supsupin'}, {name: 'Trey Villafane'}, {name: 'India Meisner'}];
+            var customers = [
+                {name: 'Michael Choi', date: new Date(2015, 4, 18)}, 
+                {name: 'John Supsupin', date: new Date(2015, 1, 12)}, 
+                {name: 'Trey Villafane', date: new Date(2015, 0, 01)}, 
+                {name: 'India Meisner', date: new Date(2015, 3, 19)}];
             var factory = {};
             factory.getCustomers = function(callback){
                 callback(customers);
@@ -37,8 +38,24 @@
             })
         });
     </script>
+    <style>
+        .thead{
+            background-color: lightgrey;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        table td{
+            padding: .25em .25em;
+            border: 1px solid black;
+        }
+        button{
+            background-color: red;
+        }
+    </style>
 </head>
-<body>
-    hi
+<body ng-app='customer'>
+    <div ng-view="">
+    </div>
 </body>
 </html>
