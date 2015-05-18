@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
+    <script>
+        var myApp = angular.module('customer', ['ngRoute']);
+        
+        myApp.config(function($routeProvider){
+            $routeProvider
+                .when('/',{
+                    templateUrl: 'partials/add.html'
+                });
+                .when('/customers',{
+                    templateUrl: 'partials/customers.html'
+                });
+                .otherwise({
+                    redirectTo: '/'
+                });
+        });
+        
+        myApp.factory('customerFactory', function(){
+            var customers = [{name: 'Michael Choi'}, {name: 'John Supsupin'}, {name: 'Trey Villafane'}, {name: 'India Meisner'}];
+            var factory = {};
+            factory.getCustomers = function(callback){
+                callback(customers);
+            }
+            return factory;
+        });
+        
+        myApp.controller('customersController', function($scope, customerFactory){
+            $scope.customers = [];
+            customerFactory.getCustomers(function(data){
+                $scope.customers = data;
+            })
+        });
+    </script>
+</head>
+<body>
+    hi
+</body>
+</html>
