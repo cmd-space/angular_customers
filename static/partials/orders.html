@@ -1,0 +1,15 @@
+<div ng-controller='ordersController'>
+    <h3>Add a new order</h3>
+    <form ng-controller='customersController'>
+        Customer <select ng-model='newOrder.customer'>
+                    <option ng-repeat="customer in customers" value="{{ customer.name }}" ng-bind="customer.name"></option>
+                 </select> <br>
+        Order <select ng-model='newOrder.quantity'>
+                  <option ng-repeat="quantity in quantity" value="{{ quantity }}" ng-bind="quantity"></option>
+              </select>
+              <select ng-model='newOrder.item'>
+                  <option ng-repeat="item in orders" value="{{ item }}" ng-bind="item"></option>
+              </select> <br>
+        <input type="submit" ng-click="addOrder()" value="Order">
+    </form>
+</div>

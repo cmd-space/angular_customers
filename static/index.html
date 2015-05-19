@@ -5,57 +5,7 @@
     <title>Customers</title>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
-    <script>
-        var myApp = angular.module('customer', ['ngRoute']);
-        
-        myApp.config(function($routeProvider){
-            $routeProvider
-                .when('/customers',{
-                    templateUrl: 'partials/customers.html'
-                })
-                .otherwise({
-                    redirectTo: '/'
-                });
-        });
-        
-        myApp.factory('customerFactory', function(){
-            var customers = [
-                {name: 'Michael Choi', date: new Date(2015, 4, 18)}, 
-                {name: 'John Supsupin', date: new Date(2015, 1, 12)}, 
-                {name: 'Trey Villafane', date: new Date(2015, 0, 01)}, 
-                {name: 'India Meisner', date: new Date(2015, 3, 19)}];
-            var factory = {};
-            factory.getCustomers = function(callback){
-                callback(customers);
-            }
-            return factory;
-        });
-        
-        myApp.controller('customersController', function($scope, customerFactory){
-            $scope.customers = [];
-            customerFactory.getCustomers(function(data){
-                $scope.customers = data;
-            });
-            $scope.addCustomer = function(){
-                var exists = true;
-                for(var i = 0;i < $scope.customers.length; i++){
-                    if($scope.customers[i].name === $scope.newCustomer.name){
-                        alert('Customer already exists! ' + $scope.customers[i].name);
-                        exists = false;
-                        return exists;
-                    }
-                }
-                if(exists === true){
-                        $scope.newCustomer.date = new Date();
-                        $scope.customers.push($scope.newCustomer);
-                        $scope.newCustomer = {};
-                }
-            }
-            $scope.removeCustomer = function(customer){
-                $scope.customers.splice($scope.customers.indexOf(customer), 1);
-            }
-        });
-    </script>
+    <script src="/js/script.js"></script>
     <style>
         form{
             margin-bottom: 1em;
@@ -86,6 +36,7 @@
     </style>
 </head>
 <body ng-app='customer'>
+    <a href="#/orders">Orders</a> | <a href="#/customers">Customers</a>
     <div ng-view="">
     </div>
 </body>
