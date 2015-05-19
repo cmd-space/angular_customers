@@ -1,14 +1,12 @@
 <div ng-controller='ordersController'>
     <h3>Add a new order</h3>
-    <form ng-controller='customersController'>
-        Customer <select ng-model='newOrder.customer'>
-                    <option ng-repeat="customer in customers" value="{{ customer.name }}" ng-bind="customer.name"></option>
+    <form>
+        Customer <select ng-model="newOrder.name">
+                    <option ng-repeat="customer in customers" ng-value="customer.name" ng-bind="customer.name"></option>
                  </select> <br>
-        Order <select ng-model='newOrder.quantity'>
-                  <option ng-repeat="quantity in quantity" value="{{ quantity }}" ng-bind="quantity"></option>
+        Order <select ng-model="newOrder.quantity" ng-options="quantity for quantity in quantity track by quantity">
               </select>
-              <select ng-model='newOrder.item'>
-                  <option ng-repeat="item in items" value="{{ item }}" ng-bind="item"></option>
+              <select ng-model="newOrder.item" ng-options="item for item in items track by item">
               </select> <br>
         <input type="submit" ng-click="addOrder()" value="Order">
     </form>
@@ -20,7 +18,7 @@
             <td>Quantity</td>
             <td>Date</td>
         </tr>
-        <tr ng-repeat="order in orders | filter:filter_order | orderBy: '-date'">
+        <tr ng-repeat="order in orders track by $index | filter:filter_order | orderBy: '-date'">
             <td ng-bind="order.name"></td>
             <td ng-bind="order.item"></td>
             <td ng-bind="order.quantity"></td>

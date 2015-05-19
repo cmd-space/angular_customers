@@ -66,6 +66,10 @@ myApp.controller('customersController', function($scope, customerFactory){
 myApp.controller('ordersController', function($scope, customerFactory){
     $scope.orders = [];
     $scope.items = [];
+    $scope.customers = [];
+    customerFactory.getCustomers(function(data){
+        $scope.customers = data;
+    });
     customerFactory.getItems(function(data){
         $scope.items = data;
     });
@@ -78,6 +82,8 @@ myApp.controller('ordersController', function($scope, customerFactory){
     }
     $scope.addOrder = function(){
         $scope.newOrder.date = new Date();
-        $scope.orders.push($scope.newOrder)
+        console.log($scope.newOrder);
+        $scope.orders.push($scope.newOrder);
+        $scope.newOrder = {};
     }
 });
