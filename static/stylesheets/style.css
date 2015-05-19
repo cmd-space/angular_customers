@@ -1,0 +1,30 @@
+form{
+    margin-bottom: 1em;
+}
+#add{
+    background-color: dodgerblue;
+}
+.thead{
+    background-color: lightgrey;
+}
+table{
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+table td{
+    padding: .25em .25em;
+    border-right: 1px solid black;
+}
+button{
+    background-color: red;
+}
+#search{
+    margin-left: 21em;
+    margin-bottom: 1em;
+}
+#order_search{
+    margin-left: 21.80em;
+    margin-bottom: 1em;
+}

@@ -8,8 +8,23 @@
                   <option ng-repeat="quantity in quantity" value="{{ quantity }}" ng-bind="quantity"></option>
               </select>
               <select ng-model='newOrder.item'>
-                  <option ng-repeat="item in orders" value="{{ item }}" ng-bind="item"></option>
+                  <option ng-repeat="item in items" value="{{ item }}" ng-bind="item"></option>
               </select> <br>
         <input type="submit" ng-click="addOrder()" value="Order">
     </form>
+    <input type="text" id="order_search" placeholder="filter..." ng-model="filter_order">
+    <table>
+        <tr class='thead'>
+            <td>Customer Name</td>
+            <td>Product</td>
+            <td>Quantity</td>
+            <td>Date</td>
+        </tr>
+        <tr ng-repeat="order in orders | filter:filter_order | orderBy: '-date'">
+            <td ng-bind="order.name"></td>
+            <td ng-bind="order.item"></td>
+            <td ng-bind="order.quantity"></td>
+            <td ng-bind="order.date | date: 'MMMM d yyyy'"></td>
+        </tr>
+    </table>
 </div>

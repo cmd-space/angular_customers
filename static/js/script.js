@@ -19,10 +19,18 @@ myApp.factory('customerFactory', function(){
         {name: 'John Supsupin', date: new Date(2015, 1, 12)}, 
         {name: 'Trey Villafane', date: new Date(2015, 0, 01)}, 
         {name: 'India Meisner', date: new Date(2015, 3, 19)}];
-    var orders = [{item: 'Nike Shoes', , 'Black Belts', 'Ice Cream', 'Candy'];
+    var items = ['Nike Shoes', 'Black Belts', 'Ice Cream', 'Candy'];
+    var orders = [
+        {name: 'Michael Choi', item: 'Nike Shoes', quantity: 2, date: new Date(2014, 3, 3)},
+        {name: 'John Supsupin', item: 'Black Belts', quantity: 3, date: new Date(2014, 3, 3)},
+        {name: 'Trey Villafane', item: 'Ice Cream', quantity: 5, date: new Date(2014, 3, 1)},
+        {name: 'India Meisner', item: 'Candy', quantity: 15, date: new Date(2014, 2, 15)}];
     var factory = {};
     factory.getCustomers = function(callback){
         callback(customers);
+    }
+    factory.getItems = function(callback){
+        callback(items);
     }
     factory.getOrders = function(callback){
         callback(orders);
@@ -57,6 +65,10 @@ myApp.controller('customersController', function($scope, customerFactory){
 
 myApp.controller('ordersController', function($scope, customerFactory){
     $scope.orders = [];
+    $scope.items = [];
+    customerFactory.getItems(function(data){
+        $scope.items = data;
+    });
     customerFactory.getOrders(function(data){
         $scope.orders = data;
     });
